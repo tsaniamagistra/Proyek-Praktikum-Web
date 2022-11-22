@@ -3,9 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Beranda</title>
+	<title>Buat Janji</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-	<link rel="stylesheet" href="home.css">
 	<style>
 		.list-group-item{
 			border-bottom: 0;
@@ -32,28 +31,22 @@
 		</div>
 		<div class="offcanvas-body">
 			<div class="list-group list-group-flush">
-				<a href="home.php" class="list-group-item list-group-item-action" style="font-weight:bold;">Beranda</a>
+				<a href="home.php" class="list-group-item list-group-item-action">Beranda</a>
 				<a href="#" class="list-group-item list-group-item-action">Jadwal Dokter</a>
-				<a href="beranda_janji.php" class="list-group-item list-group-item-action">Buat Janji Dokter</a>
+				<a href="beranda_janji.php" class="list-group-item list-group-item-action" style="font-weight:bold;">Buat Janji Dokter</a>
 				<a href="#" class="list-group-item list-group-item-action">Riwayat</a>
 				<a href="#" class="list-group-item list-group-item-action">Logout</a>
 			</div>
 		</div>
 	</div>
 	<!--end of navbar area-->
-	<div id="top-wrapper">
-		<h1>Selamat Datang!</h1>
-	</div>
-	<div class="d-flex align-items-center justify-content-center" style="height:35vh;">
-		<div class="row" style="width: 50%; text-align: center;">
-			<div class="d-grid col-6">
-				<a type="button" href="#" class="btn btn-dark btn-lg btn-merkcolor">Jadwal Dokter</a>
-			</div>
-			<div class="d-grid col-6">
-				<a type="button" href="beranda_janji.php" class="btn btn-dark btn-lg btn-merkcolor">Buat Janji Dokter</a>
-			</div>
+	<center>
+		<h2 style="margin-top:15%;">Buat Janji Temu dengan Dokter</h2>
+		<div class="row mt-5" style="width:70%;">
+			<div class="d-grid col-6"><a href="#" type="button" class="btn btn-dark btn-lg btn-merkcolor">Pasien Baru<br>(Belum ada nomor Rekam Medis)</a></div>
+			<div class="d-grid col-6"><a href="#" type="button" class="btn btn-dark btn-lg btn-merkcolor">Pasien Lama<br>(Sudah ada nomor Rekam Medis)</a></div>
 		</div>
-	</div>
+	</center>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 </html>
