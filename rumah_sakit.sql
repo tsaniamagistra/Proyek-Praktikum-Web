@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2022 at 10:26 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.10
+-- Generation Time: Nov 22, 2022 at 07:56 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,10 +28,25 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `dokter` (
-  `id_dokter` int(11) NOT NULL,
+  `id_dokter` int(3) NOT NULL,
   `dokter` varchar(50) NOT NULL,
   `spesialisasi` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jadwal_dokter`
+--
+
+CREATE TABLE `jadwal_dokter` (
+  `id_jadwal` int(11) NOT NULL,
+  `id_dokter` int(3) NOT NULL,
+  `id_klinik` int(3) NOT NULL,
+  `hari` varchar(6) NOT NULL,
+  `waktu_mulai` time NOT NULL,
+  `waktu_selesai` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -40,7 +55,7 @@ CREATE TABLE `dokter` (
 --
 
 CREATE TABLE `klinik` (
-  `id_klinik` int(11) NOT NULL,
+  `id_klinik` int(3) NOT NULL,
   `klinik` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -62,8 +77,21 @@ CREATE TABLE `pasien` (
   `negara` varchar(20) NOT NULL,
   `status_kawin` varchar(11) NOT NULL,
   `no_wa` varchar(15) NOT NULL,
-  `email` varchar(30) NOT NULL
+  `email` varchar(30) NOT NULL,
+  `alamat` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `riwayat_pasien`
+--
+
+CREATE TABLE `riwayat_pasien` (
+  `no_pendaftaran` int(17) NOT NULL,
+  `no_rm` int(9) NOT NULL,
+  `id_jadwal` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
@@ -74,6 +102,14 @@ CREATE TABLE `pasien` (
 --
 ALTER TABLE `dokter`
   ADD PRIMARY KEY (`id_dokter`);
+
+--
+-- Indexes for table `jadwal_dokter`
+--
+ALTER TABLE `jadwal_dokter`
+  ADD PRIMARY KEY (`id_jadwal`),
+  ADD KEY `id_dokter` (`id_dokter`),
+  ADD KEY `id_klinik` (`id_klinik`);
 
 --
 -- Indexes for table `klinik`
@@ -88,14 +124,46 @@ ALTER TABLE `pasien`
   ADD PRIMARY KEY (`no_rm`);
 
 --
+-- Indexes for table `riwayat_pasien`
+--
+ALTER TABLE `riwayat_pasien`
+  ADD PRIMARY KEY (`no_pendaftaran`),
+  ADD KEY `id_jadwal` (`id_jadwal`),
+  ADD KEY `no_rm` (`no_rm`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `jadwal_dokter`
+--
+ALTER TABLE `jadwal_dokter`
+  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pasien`
 --
 ALTER TABLE `pasien`
   MODIFY `no_rm` int(9) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `jadwal_dokter`
+--
+ALTER TABLE `jadwal_dokter`
+  ADD CONSTRAINT `jadwal_dokter_ibfk_1` FOREIGN KEY (`id_dokter`) REFERENCES `dokter` (`id_dokter`),
+  ADD CONSTRAINT `jadwal_dokter_ibfk_2` FOREIGN KEY (`id_klinik`) REFERENCES `klinik` (`id_klinik`);
+
+--
+-- Constraints for table `riwayat_pasien`
+--
+ALTER TABLE `riwayat_pasien`
+  ADD CONSTRAINT `riwayat_pasien_ibfk_1` FOREIGN KEY (`id_jadwal`) REFERENCES `jadwal_dokter` (`id_jadwal`),
+  ADD CONSTRAINT `riwayat_pasien_ibfk_2` FOREIGN KEY (`no_rm`) REFERENCES `pasien` (`no_rm`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
