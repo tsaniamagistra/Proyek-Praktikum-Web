@@ -99,11 +99,11 @@
                     <label class="form-label text-white mb-0">Status Perkawinan</label>
                 </div>
                 <div class="form-check form-check-inline">
-					<input class="form-check-input" type="radio" name="status_kawin" onclick="button_disabled()" value="Belum Kawin">
+					<input class="form-check-input" type="radio" name="status_kawin" value="Belum Kawin">
 					<label class="form-check-label text-white" for="Belum Kawin">Belum Kawin</label>
 				</div>
 				<div class="form-check form-check-inline">
-					    <input class="form-check-input" type="radio" name="status_kawin" onclick="button_disabled()" value="Sudah Kawin">
+					    <input class="form-check-input" type="radio" name="status_kawin" value="Sudah Kawin">
 						<label class="form-check-label text-white" for="Sudah Kawin">Sudah Kawin</label>
 				</div>
                 <input type="text" name="no_wa" class="form-control mb-2 mt-1" placeholder="Nomor Whatsapp">
