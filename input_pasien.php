@@ -58,9 +58,9 @@
             <div class="col-6 mr-2">
                 <input type="text" name="nik" minlength="16" class="form-control mb-2" placeholder="NIK">
                 <input type="text" name="nama" class="form-control mb-2" placeholder="Nama Lengkap">
-                <input type="text" name="tempat_lahir" class="form-control mb-1" placeholder="Tempat Lahir">
+                <input type="text" name="tempat_lahir" class="form-control mb-0" placeholder="Tempat Lahir">
                 <label class="form-label text-white mb-0">Tanggal Lahir</label>
-                <input class="form-control mb-3" type="date" name="tanggal_lahir">
+                <input class="form-control mb-2" type="date" name="tanggal_lahir">                        
                 <div class="row mb-2">
                 <div class="col-6 mr-1">
                     <select name="goldar" class="form-select form-select-sm">
@@ -73,23 +73,27 @@
                 </div>
                 <div class="col-6">
                     <div class="form-check form-check-inline">
-					    <input class="form-check-input" type="radio" name="jenis_kelamin" onclick="button_disabled()" value="P">
+					    <input class="form-check-input" type="radio" name="jenis_kelamin" value="P">
 						<label class="form-check-label text-white" for="P">P</label>
 					</div>
 					<div class="form-check form-check-inline">
-					    <input class="form-check-input" type="radio" name="jenis_kelamin" onclick="button_disabled()" value="L">
+					    <input class="form-check-input" type="radio" name="jenis_kelamin" value="L">
 						<label class="form-check-label text-white" for="L">L</label>
 					</div>
                 </div>
                 </div>
+                <input type="text" name="wn" class="form-control mb-2" placeholder="Kewarganegaraan">
             </div>
             <div class="col-6 ml-2">
                 <select name="agama" class="form-select form-select mb-2">
                     <option selected>Agama</option>
                     <option value="Islam">Islam</option>
-                    <option value="B">B</option>
-                    <option value="O">O</option>
-                    <option value="AB">AB</option>
+                    <option value="Protestan">Protestan</option>
+                    <option value="Katolik">Katolik</option>
+                    <option value="Hindu">Hindu</option>
+                    <option value="Buddha">Buddha</option>
+                    <option value="Konghucu">Konghucu</option>
+                    <option value="Lainnya">Lainnya</option>
                 </select>
                 <div>
                     <label class="form-label text-white mb-0">Status Perkawinan</label>
@@ -105,12 +109,12 @@
                 <input type="text" name="no_wa" class="form-control mb-2 mt-1" placeholder="Nomor Whatsapp">
                 <input type="text" name="email" class="form-control mb-2" placeholder="Email">
                 <div class="mb-2">
-                <textarea class="form-control" name="alamat" rows="2" placeholder="Alamat"></textarea>
+                <textarea class="form-control" name="alamat" rows="3" placeholder="Alamat"></textarea>
                 </div>
             </div>
-        </div>                
+        </div>     
+        <button type="submit" class="btn btn-light mt-5" style="width: 100%">DAFTAR</button>           
         </form>    
-        <button type="submit" class="btn btn-light mt-5" style="width: 100%">DAFTAR</button>
         </div>
     </div>
     <div class="col-3">
