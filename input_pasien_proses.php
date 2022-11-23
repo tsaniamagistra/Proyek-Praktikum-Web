@@ -21,7 +21,7 @@
 	$query	= mysqli_query($connect, $sql) or die(mysqli_error($connect));
 
 	if($query) {
-		header("Location:input_pasien.php");
+		header("Location:terdaftar.php");
 	} else {
 		echo "Input Data Gagal."; //diganti pemberitahuan dan balik ke input data
 	}
