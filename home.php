@@ -61,15 +61,13 @@
 		<div class="offcanvas-body">
 			<div class="list-group list-group-flush">
 				<a href="home.php" class="list-group-item list-group-item-action" style="font-weight:bold;">Beranda</a>
-				<a href="#" class="list-group-item list-group-item-action">Jadwal Dokter</a>
+				<a href="jadwal_dokter.php" class="list-group-item list-group-item-action">Jadwal Dokter</a>
 				<a href="beranda_janji.php" class="list-group-item list-group-item-action">Buat Janji Dokter</a>
 				<a href="#" class="list-group-item list-group-item-action">Riwayat</a>
-				<a href="logout.php" class="list-group-item list-group-item-action">
-					<?php
-						if(!empty($_SESSION['no_rm']))
-							echo "Keluar";
-					?>
-				</a>
+				<?php if(!empty($_SESSION['no_rm'])){?>
+					<a href="logout.php" class="list-group-item list-group-item-action"><?="Keluar";
+					?></a>
+				<?php }?>
 			</div>
 		</div>
 	</div>
@@ -80,7 +78,7 @@
 	<div class="d-flex align-items-center justify-content-center" style="height:35vh;">
 		<div class="row" style="width: 50%; text-align: center;">
 			<div class="d-grid col-6">
-				<a type="button" href="#" class="btn btn-dark btn-lg btn-merkcolor">Jadwal Dokter</a>
+				<a type="button" href="jadwal_dokter.php" class="btn btn-dark btn-lg btn-merkcolor">Jadwal Dokter</a>
 			</div>
 			<div class="d-grid col-6">
 				<a type="button" href="beranda_janji.php" class="btn btn-dark btn-lg btn-merkcolor">Buat Janji Dokter</a>

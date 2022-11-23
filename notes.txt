@@ -1,2 +1,4 @@
 - ubah color code hover button
 - status pasien masuk ke database(?)
+- pop up "silakan keluar terlebih dahulu" jika sudah login, tetapi ingin buat janji bagi pasien baru
+- id dibuat varchar krn klo int, 001 dibaca sbg 1 sama sql nya
