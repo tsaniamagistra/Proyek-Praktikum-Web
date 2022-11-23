@@ -53,7 +53,7 @@
     </div>
     <div class="col-6">
         <div class="container-md form-container">
-        <form action="terdaftar.php" method="POST">
+        <form action="input_pasien_proses.php" method="POST">
         <div class="row">
             <div class="col-6 mr-2">
                 <input type="text" name="nik" minlength="16" class="form-control mb-2" placeholder="NIK">
