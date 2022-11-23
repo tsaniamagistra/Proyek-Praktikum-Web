@@ -24,12 +24,12 @@
      background-image: url("Images/img2-cropped.jpg");
    }
    50%{
-     background-image: url("Images/img5-cropped.png");
+     background-image: url("Images/img3-cropped.png");
    }
    75%{
-     background-image: url("Images/img6-cropped.png");
+     background-image: url("Images/img4-cropped.png");
    }
    100%{
-     background-image: url("Images/img7-cropped.png");
+     background-image: url("Images/img5-cropped.png");
    }
 }

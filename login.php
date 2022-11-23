@@ -15,31 +15,60 @@
 	</style>
 </head>
 <body>
-	<!--start of navbar area-->
-	<nav class="navbar navbar-dark" style="background-color:#063970">
-  	<div class="container-fluid">
-  	  <a class="navbar-brand"><img src="Images/logo.png" style="height:30px" alt="HOSPITAL"></a>
-  	  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-  	  	<span class="navbar-toggler-icon"></span>
-  	  </button>
-  	</div>
-	</nav>
-	<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-		<div class="offcanvas-header">
-			<h5 class="offcanvas-title" id="offcanvasRightLabel">Contoh Nama, Nn.</h5>
-			<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-		</div>
-		<div class="offcanvas-body">
-			<div class="list-group list-group-flush">
-				<a href="home.php" class="list-group-item list-group-item-action" style="font-weight:bold;">Beranda</a>
-				<a href="#" class="list-group-item list-group-item-action">Jadwal Dokter</a>
-				<a href="beranda_janji.php" class="list-group-item list-group-item-action">Buat Janji Dokter</a>
-				<a href="#" class="list-group-item list-group-item-action">Riwayat</a>
-				<a href="#" class="list-group-item list-group-item-action">Logout</a>
-			</div>
-		</div>
-	</div>
-	<!--end of navbar area-->
+    <!--start of navbar area-->
+    <nav class="navbar navbar-dark" style="background-color:#063970">
+    <div class="container-fluid">
+      <a class="navbar-brand"><img src="Images/logo.png" style="height:30px" alt="HOSPITAL"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    </nav>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">
+                <?php
+                    if(empty($_SESSION['no_rm'])){?>
+                         <a href="login.php" style="color:black; text-decoration:none;">Masuk</a>
+                    <?php }
+                    else{
+                        $noRM=$_SESSION['no_rm'];
+                        $query=mysqli_query($connect,"SELECT * FROM pasien WHERE no_rm='$noRM'");
+                        $data=mysqli_fetch_array($query);
+                        //menentukan status pasien
+                        $dateOfBirth = $data['tanggal_lahir'];
+                        $today = date("Y-m-d");
+                        $diff = date_diff(date_create($dateOfBirth), date_create($today));
+                        if($diff->format('%y')<5) $status_pasien="By.";
+                        elseif($diff->format('%y')<=18) $status_pasien="An.";
+                        elseif($data['jenis_kelamin']=='L') $status_pasien="Tn.";
+                        elseif($data['jenis_kelamin']=='P'){
+                            if($data['status_kawin']=='sk') $status_pasien="Ny.";
+                            elseif($data['status_kawin']=='bk') $status_pasien="Nn.";
+                        }
+                        //echo nama, status pasien
+                        echo $data['nama'] . ", " . $status_pasien;
+                    }
+                ?>
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="list-group list-group-flush">
+                <a href="home.php" class="list-group-item list-group-item-action">Beranda</a>
+                <a href="#" class="list-group-item list-group-item-action">Jadwal Dokter</a>
+                <a href="beranda_janji.php" class="list-group-item list-group-item-action" style="font-weight:bold;">Buat Janji Dokter</a>
+                <a href="#" class="list-group-item list-group-item-action">Riwayat</a>
+                <a href="logout.php" class="list-group-item list-group-item-action">
+                    <?php
+                        if(!empty($_SESSION['no_rm']))
+                            echo "Keluar";
+                    ?>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!--end of navbar area-->
 	<div class="d-flex align-items-center justify-content-center" style="height: 90vh;">
 	<div style="width:25%; background-color:#063970;" class="p-4">
 		<form method="POST" action="login_proses.php" style="width: 100%;">

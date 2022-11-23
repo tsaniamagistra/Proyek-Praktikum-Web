@@ -1,3 +1,7 @@
+<?php
+	session_start();
+	include 'koneksi.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +31,31 @@
 	</nav>
 	<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
 		<div class="offcanvas-header">
-			<h5 class="offcanvas-title" id="offcanvasRightLabel">Contoh Nama, Nn.</h5>
+			<h5 class="offcanvas-title" id="offcanvasRightLabel">
+				<?php
+					if(empty($_SESSION['no_rm'])){?>
+						 <a href="login.php" style="color:black; text-decoration:none;">Masuk</a>
+					<?php }
+					else{
+						$noRM=$_SESSION['no_rm'];
+						$query=mysqli_query($connect,"SELECT * FROM pasien WHERE no_rm='$noRM'");
+						$data=mysqli_fetch_array($query);
+						//menentukan status pasien
+						$dateOfBirth = $data['tanggal_lahir'];
+						$today = date("Y-m-d");
+						$diff = date_diff(date_create($dateOfBirth), date_create($today));
+						if($diff->format('%y')<5) $status_pasien="By.";
+						elseif($diff->format('%y')<=18) $status_pasien="An.";
+						elseif($data['jenis_kelamin']=='L') $status_pasien="Tn.";
+						elseif($data['jenis_kelamin']=='P'){
+							if($data['status_kawin']=='sk') $status_pasien="Ny.";
+							elseif($data['status_kawin']=='bk') $status_pasien="Nn.";
+						}
+						//echo nama, status pasien
+						echo $data['nama'] . ", " . $status_pasien;
+					}
+				?>
+			</h5>
 			<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 		</div>
 		<div class="offcanvas-body">
@@ -36,7 +64,12 @@
 				<a href="#" class="list-group-item list-group-item-action">Jadwal Dokter</a>
 				<a href="beranda_janji.php" class="list-group-item list-group-item-action">Buat Janji Dokter</a>
 				<a href="#" class="list-group-item list-group-item-action">Riwayat</a>
-				<a href="#" class="list-group-item list-group-item-action">Logout</a>
+				<a href="logout.php" class="list-group-item list-group-item-action">
+					<?php
+						if(!empty($_SESSION['no_rm']))
+							echo "Keluar";
+					?>
+				</a>
 			</div>
 		</div>
 	</div>
