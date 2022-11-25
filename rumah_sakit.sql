@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2022 at 07:56 PM
+-- Generation Time: Nov 25, 2022 at 09:29 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -33,6 +33,20 @@ CREATE TABLE `dokter` (
   `spesialisasi` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `dokter`
+--
+
+INSERT INTO `dokter` (`id_dokter`, `dokter`, `spesialisasi`) VALUES
+(311, 'dr. Annabeth Chase, Sp.B, FINACS, MPH', 'Bedah Umum'),
+(312, 'dr. Jeon Wonwoo, Sp.B', 'Bedah Umum'),
+(321, 'dr. Severus Snape, Sp.OT', 'Bedah Tulang'),
+(322, 'dr. Seungkwan, Sp.OT', 'Bedah Tulang'),
+(331, 'dr. Ariana Dumbledore, Sp. S, M.Kes, Ph.D', 'Saraf'),
+(341, 'dr. Luke Castellan, Sp.JP.(K)., FIHA', 'Kardiologi'),
+(351, 'dr. Mingyu, B.Med.,Sc.M.Epid.,MSc., Sp.A', 'Anak'),
+(361, 'dr. Wen Junhui, Sp.OG, M.Kes', 'OBGYN');
+
 -- --------------------------------------------------------
 
 --
@@ -59,6 +73,18 @@ CREATE TABLE `klinik` (
   `klinik` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `klinik`
+--
+
+INSERT INTO `klinik` (`id_klinik`, `klinik`) VALUES
+(101, 'Bedah Umum'),
+(102, 'Bedah Tulang'),
+(103, 'Saraf'),
+(104, 'Kardiologi'),
+(105, 'Anak'),
+(106, 'OBGYN');
+
 -- --------------------------------------------------------
 
 --
@@ -74,12 +100,21 @@ CREATE TABLE `pasien` (
   `tanggal_lahir` date NOT NULL,
   `goldar` varchar(2) NOT NULL,
   `agama` varchar(15) NOT NULL,
-  `negara` varchar(20) NOT NULL,
+  `wn` varchar(20) NOT NULL,
   `status_kawin` varchar(11) NOT NULL,
   `no_wa` varchar(15) NOT NULL,
   `email` varchar(30) NOT NULL,
   `alamat` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pasien`
+--
+
+INSERT INTO `pasien` (`no_rm`, `nik`, `nama`, `jenis_kelamin`, `tempat_lahir`, `tanggal_lahir`, `goldar`, `agama`, `wn`, `status_kawin`, `no_wa`, `email`, `alamat`) VALUES
+(2, '1111222233334444', 'Elizabeth Darcy', 'P', 'West Californiaaa', '2014-06-23', 'O', 'Islam', '', 'Belum Kawin', '0899991232111', 'fanyu@gmail.com', 'Tokyo, Jepang'),
+(3, '', '', '', '', '0000-00-00', 'Go', 'Agama', '', '', '', '', ''),
+(4, '', '', '', '', '0000-00-00', 'Go', 'Agama', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -145,7 +180,7 @@ ALTER TABLE `jadwal_dokter`
 -- AUTO_INCREMENT for table `pasien`
 --
 ALTER TABLE `pasien`
-  MODIFY `no_rm` int(9) NOT NULL AUTO_INCREMENT;
+  MODIFY `no_rm` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
