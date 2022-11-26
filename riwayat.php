@@ -72,8 +72,8 @@
 			<div class="list-group list-group-flush">
 				<a href="home.php" class="list-group-item list-group-item-action">Beranda</a>
 				<a href="jadwal_dokter.php" class="list-group-item list-group-item-action">Jadwal Dokter</a>
-				<a href="beranda_janji.php" class="list-group-item list-group-item-action" style="font-weight:bold;">Buat Janji Dokter</a>
-				<a href="riwayat.php" class="list-group-item list-group-item-action">Riwayat</a>
+				<a href="beranda_janji.php" class="list-group-item list-group-item-action" >Buat Janji Dokter</a>
+				<a href="riwayat.php" class="list-group-item list-group-item-action" style="font-weight:bold;">Riwayat</a>
 				<?php if(!empty($_SESSION['no_rm'])){?>
 					<a href="logout.php" class="list-group-item list-group-item-action"><?="Keluar";
 					?></a>
