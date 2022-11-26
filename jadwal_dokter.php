@@ -23,7 +23,7 @@
 </head>
 <body>
 	<!--start of navbar area-->
-	<nav class="navbar navbar-dark" style="background-color:#063970">
+	<nav class="navbar navbar-dark fixed-top" style="background-color:#063970">
   	<div class="container-fluid">
   	  <a class="navbar-brand"><img src="Images/logo.png" style="height:30px" alt="HOSPITAL"></a>
   	  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
@@ -74,8 +74,8 @@
 		</div>
 	</div>
 	<!--end of navbar area-->
-	<center>
-	<div style="width:90%; background-color:#063970;" class="py-4 px-2 mt-5">
+	<center class="my-5 pt-5">
+	<div style="width:90%; background-color:#063970;" class="py-4 px-2">
 		<div style="color:white; text-align:left;" class="mb-3 mx-3">Pilih satu atau lebih filter atau langsung klik LIHAT untuk seluruhnya</div>
 		<form method="GET" action="jadwal_dokter.php" style="width: 100%;" class="row">
 			<div class="col-4">
@@ -129,10 +129,18 @@
 				$sql1="SELECT * FROM klinik WHERE id_klinik='$id_klinik'";
 			$query1=mysqli_query($connect,$sql1);
 			while($data1=mysqli_fetch_array($query1)){ 
-				if($_GET['dokter']=='0')
-					$sql2="SELECT DISTINCT id_dokter FROM jadwal_dokter WHERE id_klinik=$data1[id_klinik]";
-				else
-					$sql2="SELECT DISTINCT id_dokter FROM jadwal_dokter WHERE id_dokter='$id_dokter' AND id_klinik=$data1[id_klinik]";
+				if($_GET['dokter']=='0'){
+					if($_GET['hari']=='0') //tdk filter dokter, tdk filter hari
+						$sql2="SELECT DISTINCT id_dokter FROM jadwal_dokter WHERE id_klinik=$data1[id_klinik]";
+					else //tdk filter dokter, filter hari
+						$sql2="SELECT DISTINCT id_dokter FROM jadwal_dokter WHERE id_klinik=$data1[id_klinik] AND hari='$hari'";
+				}
+				else{
+					if($_GET['hari']=='0') //filter dokter, tdk filter hari
+						$sql2="SELECT DISTINCT id_dokter FROM jadwal_dokter WHERE id_klinik=$data1[id_klinik] AND id_dokter='$id_dokter'";
+					else //filter dokter filter hari
+						$sql2="SELECT DISTINCT id_dokter FROM jadwal_dokter WHERE id_klinik=$data1[id_klinik] AND id_dokter='$id_dokter' AND hari='$hari'";
+				}
 				$query2=mysqli_query($connect,$sql2);
 				if(mysqli_num_rows($query2)!=0){ ?>
 					<h6 style="text-align:left"><?=$data1['klinik'];?></h6>
@@ -157,16 +165,18 @@
 								echo $data3['dokter'];
 								?>
 								</td>
+								<!--Hari-->
 								<?php
 								for ($i=0; $i < $length; $i++) { ?>
 									<td>
 									<?php
 									$query4=mysqli_query($connect, "SELECT * FROM jadwal_dokter WHERE id_dokter=$data2[id_dokter] AND hari='$days[$i]' AND id_klinik=$data1[id_klinik]");
-									$data4=mysqli_fetch_array($query4);
+									while($data4=mysqli_fetch_array($query4)){
 									if($data4!=NULL)
-									echo date('H:i', strtotime($data4['waktu_mulai'])) . " - " . date('H:i', strtotime($data4['waktu_selesai']));
+										echo date('H:i', strtotime($data4['waktu_mulai'])) . " - " . date('H:i', strtotime($data4['waktu_selesai'])) . "\n";
 									else
-									echo "-";
+										echo "-";
+									}
 									?>
 									</td>
 								<?php } ?>
