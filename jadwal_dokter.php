@@ -1,6 +1,8 @@
 <?php
 	session_start();
 	include 'koneksi.php';
+	$days = array("Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu");
+	$length = count($days);
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,11 +18,6 @@
 		}
 		.btn-merkcolor{
 			background-color:#063970;
-		}
-		.scrollable-select{
-			height: auto;
-			max-height: 200px;
-			overflow-x: hidden;
 		}
 	</style>
 </head>
@@ -77,46 +74,111 @@
 		</div>
 	</div>
 	<!--end of navbar area-->
-	<div class="d-flex align-items-center justify-content-center" style="height: 90vh;">
-	<div style="width:35%; background-color:#063970;" class="p-4">
-		<div style="color:white;" class="mb-3">Pilih satu atau lebih filter</div>
-		<form method="POST" action="#" style="width: 100%;">
-			<select class="form-select">
-				<option selected>- Pilih Klinik</option>
+	<center>
+	<div style="width:90%; background-color:#063970;" class="py-4 px-2 mt-5">
+		<div style="color:white; text-align:left;" class="mb-3 mx-3">Pilih satu atau lebih filter atau langsung klik LIHAT untuk seluruhnya</div>
+		<form method="GET" action="jadwal_dokter.php" style="width: 100%;" class="row">
+			<div class="col-4">
+			<select class="form-select dropdown-toggle scrollable-select" name="klinik">
+				<option value='0' selected>- Pilih Klinik</option>
 				<?php
-					$query_klinik=mysqli_query($connect,"SELECT * FROM klinik");
-						while($klinik=mysqli_fetch_array($query_klinik)){ ?>
+					$opt_klinik=mysqli_query($connect,"SELECT * FROM klinik");
+						while($klinik=mysqli_fetch_array($opt_klinik)){ ?>
 							<option value="<?php echo $klinik['id_klinik']; ?>"><?php echo $klinik['klinik']?></option>
 						<?php }
 					?>
 				?>
 			</select>
-			<select class="form-select mt-3">
-				<option selected>- Pilih Dokter</option>
+			</div>
+			<div class="col-4">
+			<select class="form-select col" name="dokter">
+				<option value='0' selected>- Pilih Dokter</option>
 				<?php
-					$query_dokter=mysqli_query($connect,"SELECT * FROM dokter");
-						while($dokter=mysqli_fetch_array($query_dokter)){ ?>
+					$opt_dokter=mysqli_query($connect,"SELECT * FROM dokter");
+						while($dokter=mysqli_fetch_array($opt_dokter)){ ?>
 							<option value="<?php echo $dokter['id_dokter']; ?>"><?php echo $dokter['dokter']?></option>
 						<?php }
 					?>
 				?>
 			</select>
-			<select class="form-select mt-3">
-				<option selected>- Pilih Hari</option>
-				<option value="senin">Senin</option>
-				<option value="selasa">Selas</option>
-				<option value="rabu">Rabu</option>
-				<option value="kamis">Kamis</option>
-				<option value="jumat">Jumat</option>
-				<option value="sabtu">Sabtu</option>
-				<option value="minggu">Minggu</option>
+			</div>
+			<div class="col-3">
+			<select class="form-select col" name="hari">
+				<option value='0' selected>- Pilih Hari</option>
+				<?php for ($i=0; $i < $length; $i++) { ?>
+					<option value="<?=$days[$i];?>"><?=$days[$i];?></td>
+				<?php } ?>
 			</select>
-			<div class="mt-4" style="text-align:center;">
-				<button class="btn btn-light" type="submit">LIHAT</button>
+			</div>
+			<div class="col-1">
+				<button class="btn btn-light" type="submit" name="submit" value="1">LIHAT</button>
 			</div>
 		</form>
 	</div>
+	<?php if(!empty($_GET['submit'])){
+		$id_klinik	= $_GET['klinik'];
+		$id_dokter	= $_GET['dokter'];
+		$hari		= $_GET['hari'];
+	?>
+	<div style="width:90%;" class="px-2 mt-5">
+		<h3>Jadwal Dokter</h3>
+		<?php
+			if($_GET['klinik']=='0')
+					$sql1="SELECT * FROM klinik";
+			else
+				$sql1="SELECT * FROM klinik WHERE id_klinik='$id_klinik'";
+			$query1=mysqli_query($connect,$sql1);
+			while($data1=mysqli_fetch_array($query1)){ 
+				if($_GET['dokter']=='0')
+					$sql2="SELECT DISTINCT id_dokter FROM jadwal_dokter WHERE id_klinik=$data1[id_klinik]";
+				else
+					$sql2="SELECT DISTINCT id_dokter FROM jadwal_dokter WHERE id_dokter='$id_dokter' AND id_klinik=$data1[id_klinik]";
+				$query2=mysqli_query($connect,$sql2);
+				if(mysqli_num_rows($query2)!=0){ ?>
+					<h6 style="text-align:left"><?=$data1['klinik'];?></h6>
+					<table class="table table-bordered" style="text-align:center;">
+						<thead class="table-light">
+							<tr>
+								<td class="col-3">Nama Dokter</td>
+								<?php for ($i=0; $i < $length; $i++) { ?>
+								<td class="col-1"><?=$days[$i];?></td>
+								<?php } ?>
+							</tr>
+						</thead>
+						<tbody>
+							<?php
+							while($data2=mysqli_fetch_array($query2)){
+							?>
+							<tr>
+								<td> <!--Nama Dokter-->
+								<?php
+								$query3=mysqli_query($connect, "SELECT dokter FROM dokter WHERE id_dokter=$data2[id_dokter]");
+								$data3=mysqli_fetch_array($query3);
+								echo $data3['dokter'];
+								?>
+								</td>
+								<?php
+								for ($i=0; $i < $length; $i++) { ?>
+									<td>
+									<?php
+									$query4=mysqli_query($connect, "SELECT * FROM jadwal_dokter WHERE id_dokter=$data2[id_dokter] AND hari='$days[$i]' AND id_klinik=$data1[id_klinik]");
+									$data4=mysqli_fetch_array($query4);
+									if($data4!=NULL)
+									echo date('H:i', strtotime($data4['waktu_mulai'])) . " - " . date('H:i', strtotime($data4['waktu_selesai']));
+									else
+									echo "-";
+									?>
+									</td>
+								<?php } ?>
+							</tr>
+							<?php } ?>
+						</tbody>
+					</table>
+				<?php }
+			} ?>
 	</div>
+	<?php } ?>
+	</center>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 </html>

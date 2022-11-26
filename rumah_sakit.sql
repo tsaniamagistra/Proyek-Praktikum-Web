@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2022 at 09:29 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Nov 26, 2022 at 01:16 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `dokter` (
   `id_dokter` int(3) NOT NULL,
   `dokter` varchar(50) NOT NULL,
-  `spesialisasi` varchar(20) NOT NULL
+  `spesialisasi` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -39,13 +39,13 @@ CREATE TABLE `dokter` (
 
 INSERT INTO `dokter` (`id_dokter`, `dokter`, `spesialisasi`) VALUES
 (311, 'dr. Annabeth Chase, Sp.B, FINACS, MPH', 'Bedah Umum'),
-(312, 'dr. Jeon Wonwoo, Sp.B', 'Bedah Umum'),
+(312, 'dr. Jeon Wonwoo, Sp.OG, M.Kes', 'OBGYN'),
 (321, 'dr. Severus Snape, Sp.OT', 'Bedah Tulang'),
-(322, 'dr. Seungkwan, Sp.OT', 'Bedah Tulang'),
+(322, 'dr. Lee Jihoon, Sp.OT', 'Bedah Tulang'),
 (331, 'dr. Ariana Dumbledore, Sp. S, M.Kes, Ph.D', 'Saraf'),
 (341, 'dr. Luke Castellan, Sp.JP.(K)., FIHA', 'Kardiologi'),
-(351, 'dr. Mingyu, B.Med.,Sc.M.Epid.,MSc., Sp.A', 'Anak'),
-(361, 'dr. Wen Junhui, Sp.OG, M.Kes', 'OBGYN');
+(351, 'dr. Kim Mingyu, B.Med., Sc.M.Epid., MSc., Sp.A', 'Anak'),
+(361, 'dr. Wen Junhui, Sp.B, Sp.BP-RE(K)', 'Bedah Umum, Bedah Plastik');
 
 -- --------------------------------------------------------
 
@@ -54,13 +54,28 @@ INSERT INTO `dokter` (`id_dokter`, `dokter`, `spesialisasi`) VALUES
 --
 
 CREATE TABLE `jadwal_dokter` (
-  `id_jadwal` int(11) NOT NULL,
+  `id_jadwal` int(4) NOT NULL,
   `id_dokter` int(3) NOT NULL,
   `id_klinik` int(3) NOT NULL,
   `hari` varchar(6) NOT NULL,
   `waktu_mulai` time NOT NULL,
   `waktu_selesai` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `jadwal_dokter`
+--
+
+INSERT INTO `jadwal_dokter` (`id_jadwal`, `id_dokter`, `id_klinik`, `hari`, `waktu_mulai`, `waktu_selesai`) VALUES
+(2001, 341, 104, 'Selasa', '09:00:00', '11:30:00'),
+(2002, 311, 101, 'Kamis', '09:00:00', '11:30:00'),
+(2003, 321, 102, 'Selasa', '12:00:00', '15:00:00'),
+(2004, 322, 102, 'Senin', '14:00:00', '16:30:00'),
+(2005, 341, 104, 'Kamis', '12:00:00', '15:00:00'),
+(2006, 361, 107, 'Rabu', '13:00:00', '15:00:00'),
+(2007, 361, 101, 'Senin', '09:00:00', '11:30:00'),
+(2008, 322, 102, 'Rabu', '13:00:00', '15:00:00'),
+(2009, 361, 101, 'Kamis', '14:00:00', '16:00:00');
 
 -- --------------------------------------------------------
 
@@ -83,7 +98,8 @@ INSERT INTO `klinik` (`id_klinik`, `klinik`) VALUES
 (103, 'Saraf'),
 (104, 'Kardiologi'),
 (105, 'Anak'),
-(106, 'OBGYN');
+(106, 'OBGYN'),
+(107, 'Bedah Plastik');
 
 -- --------------------------------------------------------
 
@@ -112,9 +128,8 @@ CREATE TABLE `pasien` (
 --
 
 INSERT INTO `pasien` (`no_rm`, `nik`, `nama`, `jenis_kelamin`, `tempat_lahir`, `tanggal_lahir`, `goldar`, `agama`, `wn`, `status_kawin`, `no_wa`, `email`, `alamat`) VALUES
-(2, '1111222233334444', 'Elizabeth Darcy', 'P', 'West Californiaaa', '2014-06-23', 'O', 'Islam', '', 'Belum Kawin', '0899991232111', 'fanyu@gmail.com', 'Tokyo, Jepang'),
-(3, '', '', '', '', '0000-00-00', 'Go', 'Agama', '', '', '', '', ''),
-(4, '', '', '', '', '0000-00-00', 'Go', 'Agama', '', '', '', '', '');
+(1, '1111111111111001', 'Elizabeth Darcy', 'P', 'West California', '2014-06-23', 'O', 'Islam', 'Indonesia', 'Belum Kawin', '0899991232111', 'fanyu@gmail.com', 'Tokyo, Jepang'),
+(2, '1111111111111002', 'Heiji Hattori', 'L', 'Osaka', '1994-04-16', 'B', 'Lainnya', 'Jepang', 'Belum Kawin', '0894196213004', 'hattoriheiji@gmail.com', 'Osaka, Jepang');
 
 -- --------------------------------------------------------
 
@@ -174,13 +189,13 @@ ALTER TABLE `riwayat_pasien`
 -- AUTO_INCREMENT for table `jadwal_dokter`
 --
 ALTER TABLE `jadwal_dokter`
-  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_jadwal` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2012;
 
 --
 -- AUTO_INCREMENT for table `pasien`
 --
 ALTER TABLE `pasien`
-  MODIFY `no_rm` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `no_rm` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
