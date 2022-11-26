@@ -47,8 +47,8 @@
 						elseif($diff->format('%y')<=18) $status_pasien="An.";
 						elseif($data['jenis_kelamin']=='L') $status_pasien="Tn.";
 						elseif($data['jenis_kelamin']=='P'){
-							if($data['status_kawin']=='sk') $status_pasien="Ny.";
-							elseif($data['status_kawin']=='bk') $status_pasien="Nn.";
+							if($data['status_kawin']=='Sudah Kawin') $status_pasien="Ny.";
+							elseif($data['status_kawin']=='Belum Kawin') $status_pasien="Nn.";
 						}
 						//echo nama, status pasien
 						echo $data['nama'] . ", " . $status_pasien;
@@ -76,7 +76,7 @@
 		<div class="row mt-5" style="width:70%;">
 			<div class="d-grid col-6"><a href="input_pasien.php" type="button" class="btn btn-dark btn-lg btn-merkcolor">Pasien Baru<br>(Belum ada nomor Rekam Medis)</a></div>
 			<div class="d-grid col-6">
-				<a href=<?php if(empty($_SESSION['no_rm'])) echo "login.php"; else echo "form_janji.php";?> type="button" class="btn btn-dark btn-lg btn-merkcolor">Pasien Lama<br>(Sudah ada nomor Rekam Medis)</a></div>
+				<a href=<?php if(empty($_SESSION['no_rm'])) echo "login.php?message=form_janji.php"; else echo "form_janji.php";?> type="button" class="btn btn-dark btn-lg btn-merkcolor">Pasien Lama<br>(Sudah ada nomor Rekam Medis)</a></div>
 		</div>
 	</center>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>

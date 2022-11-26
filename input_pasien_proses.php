@@ -1,7 +1,6 @@
 <?php
 	include 'koneksi.php';
 
-    //no_rm diganti(?)
 	$nik		    = $_POST['nik'];
 	$nama	        = $_POST['nama'];
 	$jenis_kelamin	= $_POST['jenis_kelamin'];
@@ -21,9 +20,9 @@
 	$query	= mysqli_query($connect, $sql) or die(mysqli_error($connect));
 
 	if($query) {
-		header("Location:terdaftar.php");
+		header("Location:login.php?message=$nik");
 	} else {
-		echo "Input Data Gagal."; //diganti pemberitahuan dan balik ke input data
+		echo "Input Data Gagal.";
 	}
 	
 ?>

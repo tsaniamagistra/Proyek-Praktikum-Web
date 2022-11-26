@@ -1,3 +1,7 @@
+<?php
+	session_start();
+	include 'koneksi.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,8 +47,8 @@
 						elseif($diff->format('%y')<=18) $status_pasien="An.";
 						elseif($data['jenis_kelamin']=='L') $status_pasien="Tn.";
 						elseif($data['jenis_kelamin']=='P'){
-							if($data['status_kawin']=='sk') $status_pasien="Ny.";
-							elseif($data['status_kawin']=='bk') $status_pasien="Nn.";
+							if($data['status_kawin']=='Sudah Kawin') $status_pasien="Ny.";
+							elseif($data['status_kawin']=='Belum Kawin') $status_pasien="Nn.";
 						}
 						//echo nama, status pasien
 						echo $data['nama'] . ", " . $status_pasien;
@@ -69,13 +73,30 @@
 	<!--end of navbar area-->
 	<div class="d-flex align-items-center justify-content-center" style="height: 90vh;">
 	<div style="width:25%; background-color:#063970;" class="p-4">
-		<?php
-			if(isset($_GET['message'])){
-				if($_GET['message']=="failed"){?>
-					<div style="color:white; text-align:center;" class="mb-2">Gagal masuk!<br>No. RM atau Tanggal Lahir salah.</div>
-			<?php }}
-		?>
 		<form method="POST" action="login_proses.php" style="width: 100%;">
+			<?php
+			if(isset($_GET['message'])){?>
+				<div style="color:white; text-align:center;" class="mb-2">
+				<?php
+				if (strpos($_GET['message'],"failed") !== false) {
+					echo "Gagal masuk!<br>No. RM atau Tanggal Lahir salah.";?>
+					<input type="hidden" name="next_page" value="home.php"></input>
+				<?php }
+				elseif($_GET['message']=="form_janji.php"){
+					echo "Silakan masuk terlebih dahulu!";?>
+					<input type="hidden" name="next_page" value="form_janji.php"></input>
+				<?php }
+				else{
+					$nik=($_GET['message']);
+					$query1=mysqli_query($connect,"SELECT * FROM pasien WHERE nik=$nik");
+					$data1=mysqli_fetch_array($query1);
+					echo "Pendaftaran berhasil!<br>No. RM anda = ".$data1['no_rm'];?>
+					<input type="hidden" name="next_page" value="form_janji.php"></input>
+				<?php }
+				?> </div>
+			<?php }
+			else {?><input type="hidden" name="next_page" value="home.php"></input><?php }
+			?>
 			<label for="noRM" class="text-white">No. RM</label>
 			<input class="form-control d-grid mt-2" type="text" name="noRM" id="noRM" placeholder="Masukkan nomor Rekam Medis"></input>
 			<label for="tglLahir" class="text-white mt-2">Tanggal Lahir</label>

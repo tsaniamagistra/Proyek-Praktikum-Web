@@ -55,8 +55,8 @@
 						elseif($diff->format('%y')<=18) $status_pasien="An.";
 						elseif($data['jenis_kelamin']=='L') $status_pasien="Tn.";
 						elseif($data['jenis_kelamin']=='P'){
-							if($data['status_kawin']=='sk') $status_pasien="Ny.";
-							elseif($data['status_kawin']=='bk') $status_pasien="Nn.";
+							if($data['status_kawin']=='Sudah Kawin') $status_pasien="Ny.";
+							elseif($data['status_kawin']=='Belum Kawin') $status_pasien="Nn.";
 						}
 						//echo nama, status pasien
 						echo $data['nama'] . ", " . $status_pasien;
