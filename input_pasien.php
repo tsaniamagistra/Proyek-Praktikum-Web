@@ -19,63 +19,63 @@
 	</style>
 </head>
 <body>
-    <!--start of navbar area-->
-    <nav class="navbar navbar-dark" style="background-color:#063970">
-    <div class="container-fluid">
-      <a class="navbar-brand"><img src="Images/logo.png" style="height:30px" alt="HOSPITAL"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-    </nav>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasRightLabel">
-                <?php
-                    if(empty($_SESSION['no_rm'])){?>
-                         <a href="login.php" style="color:black; text-decoration:none;">Masuk</a>
-                    <?php }
-                    else{
-                        $noRM=$_SESSION['no_rm'];
-                        $query=mysqli_query($connect,"SELECT * FROM pasien WHERE no_rm='$noRM'");
-                        $data=mysqli_fetch_array($query);
-                        //menentukan status pasien
-                        $dateOfBirth = $data['tanggal_lahir'];
-                        $today = date("Y-m-d");
-                        $diff = date_diff(date_create($dateOfBirth), date_create($today));
-                        if($diff->format('%y')<5) $status_pasien="By.";
-                        elseif($diff->format('%y')<=18) $status_pasien="An.";
-                        elseif($data['jenis_kelamin']=='L') $status_pasien="Tn.";
-                        elseif($data['jenis_kelamin']=='P'){
-                            if($data['status_kawin']=='Sudah kawin') $status_pasien="Ny.";
-                            elseif($data['status_kawin']=='Belum Kawin') $status_pasien="Nn.";
-                        }
-                        //echo nama, status pasien
-                        echo $data['nama'] . ", " . $status_pasien;
-                    }
-                ?>
-            </h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <div class="list-group list-group-flush">
-                <a href="home.php" class="list-group-item list-group-item-action">Beranda</a>
-                <a href="jadwal_dokter.php" class="list-group-item list-group-item-action">Jadwal Dokter</a>
-                <a href="beranda_janji.php" class="list-group-item list-group-item-action">Buat Janji Dokter</a>
-                <a href="#" class="list-group-item list-group-item-action">Riwayat</a>
-                <?php if(!empty($_SESSION['no_rm'])){?>
-                    <a href="logout.php" class="list-group-item list-group-item-action"><?="Keluar";
-                    ?></a>
-                <?php }?>
-            </div>
-        </div>
-    </div>
-    <!--end of navbar area-->
+   <!--start of navbar area-->
+	<nav class="navbar navbar-dark" style="background-color:#063970">
+  	<div class="container-fluid">
+  	  <a class="navbar-brand"><img src="Images/logo.png" style="height:30px" alt="HOSPITAL"></a>
+  	  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+  	  	<span class="navbar-toggler-icon"></span>
+  	  </button>
+  	</div>
+	</nav>
+	<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+		<div class="offcanvas-header">
+			<h5 class="offcanvas-title" id="offcanvasRightLabel">
+				<?php
+					if(empty($_SESSION['no_rm'])){?>
+						 <a href="login.php" style="color:black; text-decoration:none;">Masuk</a>
+					<?php }
+					else{
+						$noRM=$_SESSION['no_rm'];
+						$query=mysqli_query($connect,"SELECT * FROM pasien WHERE no_rm='$noRM'");
+						$data=mysqli_fetch_array($query);
+						//menentukan status pasien
+						$dateOfBirth = $data['tanggal_lahir'];
+						$today = date("Y-m-d");
+						$diff = date_diff(date_create($dateOfBirth), date_create($today));
+						if($diff->format('%y')<5) $status_pasien="By.";
+						elseif($diff->format('%y')<=18) $status_pasien="An.";
+						elseif($data['jenis_kelamin']=='L') $status_pasien="Tn.";
+						elseif($data['jenis_kelamin']=='P'){
+							if($data['status_kawin']=='sk') $status_pasien="Ny.";
+							elseif($data['status_kawin']=='bk') $status_pasien="Nn.";
+						}
+						//echo nama, status pasien
+						echo $data['nama'] . ", " . $status_pasien;
+					}
+				?>
+			</h5>
+			<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		</div>
+		<div class="offcanvas-body">
+			<div class="list-group list-group-flush">
+				<a href="home.php" class="list-group-item list-group-item-action">Beranda</a>
+				<a href="jadwal_dokter.php" class="list-group-item list-group-item-action">Jadwal Dokter</a>
+				<a href="beranda_janji.php" class="list-group-item list-group-item-action" style="font-weight:bold;">Buat Janji Dokter</a>
+				<a href="#" class="list-group-item list-group-item-action">Riwayat</a>
+				<?php if(!empty($_SESSION['no_rm'])){?>
+					<a href="logout.php" class="list-group-item list-group-item-action"><?="Keluar";
+					?></a>
+				<?php }?>
+			</div>
+		</div>
+	</div>
+	<!--end of navbar area-->
     
     <center>
         <h2 style="margin-top:2.5%;">Formulir Data Pasien Baru</h2>
     </center>
-    <div class="row">
+    <div class="row" style="width:100vw">
     <div class="col-3">
     </div>
     <div class="col-6">
@@ -83,7 +83,7 @@
         <form action="input_pasien_proses.php" method="POST">
         <div class="row">
             <div class="col-6 mr-2">
-                <input type="text" name="nik" minlength="16" class="form-control mb-2" placeholder="NIK">
+                <input type="text" name="nik" minlength="16" maxlength="16" class="form-control mb-2" placeholder="NIK">
                 <input type="text" name="nama" class="form-control mb-2" placeholder="Nama Lengkap">
                 <input type="text" name="tempat_lahir" class="form-control mb-0" placeholder="Tempat Lahir">
                 <label class="form-label text-white mb-0">Tanggal Lahir</label>
