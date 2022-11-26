@@ -62,7 +62,7 @@
 				<a href="home.php" class="list-group-item list-group-item-action">Beranda</a>
 				<a href="jadwal_dokter.php" class="list-group-item list-group-item-action">Jadwal Dokter</a>
 				<a href="beranda_janji.php" class="list-group-item list-group-item-action">Buat Janji Dokter</a>
-				<a href="#" class="list-group-item list-group-item-action">Riwayat</a>
+				<a href="riwayat.php" class="list-group-item list-group-item-action">Riwayat</a>
 				<?php if(!empty($_SESSION['no_rm'])){?>
 					<a href="logout.php" class="list-group-item list-group-item-action"><?="Keluar";
 					?></a>
@@ -86,6 +86,9 @@
 					echo "Silakan masuk terlebih dahulu!";?>
 					<input type="hidden" name="next_page" value="form_janji.php"></input>
 				<?php }
+				else if($_GET['message']=="belum_login"){
+					echo "Silakan masuk terlebih dahulu!";
+				}
 				else{
 					$nik=($_GET['message']);
 					$query1=mysqli_query($connect,"SELECT * FROM pasien WHERE nik=$nik");
