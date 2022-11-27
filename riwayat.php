@@ -2,7 +2,7 @@
 	session_start();
 	
 	if (empty($_SESSION['no_rm'])) {
-		header("Location:login.php?message=belum_login");
+		header("Location:login.php?message=riwayat.php");
 	}
 	else{
 	include 'koneksi.php';

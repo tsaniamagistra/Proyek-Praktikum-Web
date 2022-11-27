@@ -72,8 +72,8 @@
 	</div>
 	<!--end of navbar area-->
 	<div class="d-flex align-items-center justify-content-center" style="height: 90vh;">
-	<div style="width:25%; background-color:#063970;" class="p-4">
-		<form method="POST" action="login_proses.php" style="width: 100%;">
+	<div style="width:25%;">
+		<form method="POST" action="login_proses.php" style="width: 100%; background-color:#063970;" class="p-4">
 			<?php
 			if(isset($_GET['message'])){?>
 				<div style="color:white; text-align:center;" class="mb-2">
@@ -86,9 +86,10 @@
 					echo "Silakan masuk terlebih dahulu!";?>
 					<input type="hidden" name="next_page" value="form_janji.php"></input>
 				<?php }
-				else if($_GET['message']=="belum_login"){
-					echo "Silakan masuk terlebih dahulu!";
-				}
+				else if($_GET['message']=="riwayat.php"){
+					echo "Silakan masuk terlebih dahulu!";?>
+					<input type="hidden" name="next_page" value="riwayat.php"></input>
+				<?php }
 				else{
 					$nik=($_GET['message']);
 					$query1=mysqli_query($connect,"SELECT * FROM pasien WHERE nik=$nik");
@@ -108,7 +109,7 @@
 				<button class="btn btn-light" type="submit">MASUK</button>
 			</div>
 		</form>
-	</div>
+		<div style="text-align:center;" class="mt-2">Belum punya No. RM? <a href="input_pasien.php" style="color: black;">Daftar di sini.</a></div>
 	</div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
