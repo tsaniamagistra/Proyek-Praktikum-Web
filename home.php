@@ -45,7 +45,8 @@
 						$today = date("Y-m-d");
 						$diff = date_diff(date_create($dateOfBirth), date_create($today));
 						if($diff->format('%y')<5) $status_pasien="By.";
-						elseif($diff->format('%y')<=18) $status_pasien="An.";
+						elseif(($diff->format('%y')<=18)&&($data['status_kawin']=='Sudah Kawin')) $status_pasien="Ny.";
+						elseif(($diff->format('%y')<=18)&&($data['status_kawin']=='Belum Kawin')) $status_pasien="An.";
 						elseif($data['jenis_kelamin']=='L') $status_pasien="Tn.";
 						elseif($data['jenis_kelamin']=='P'){
 							if($data['status_kawin']=='Sudah Kawin') $status_pasien="Ny.";
