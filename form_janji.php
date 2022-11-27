@@ -15,7 +15,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Pendaftaran Pasien Baru</title>
+	<title>Buat Janji</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 	<style>
 		.list-group-item{
@@ -178,7 +178,7 @@
 									$query4=mysqli_query($connect, "SELECT * FROM jadwal_dokter WHERE id_dokter=$data2[id_dokter] AND hari='$days[$i]' AND id_klinik=$data1[id_klinik]");
 									while($data4=mysqli_fetch_array($query4)){
 									if($data4!=NULL){ ?>
-										<form method="POST" action="form_janji_proses.php">
+										<form method="POST" action="kalender.php">
 										<input type="hidden" name="no_rm" value="<?=$no_rm?>">
 										<input type="hidden" name="id_jadwal" value="<?=$data4['id_jadwal']?>">
 										<button type="submit" class="btn p-0"><?=date('H:i', strtotime($data4['waktu_mulai'])) . "-" . date('H:i', strtotime($data4['waktu_selesai'])) . "\n";?></button>

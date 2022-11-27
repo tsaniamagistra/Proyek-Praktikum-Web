@@ -14,7 +14,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Pendaftaran Pasien Baru</title>
+	<title>Riwayat</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 	<style>
 		.list-group-item{
@@ -79,8 +79,8 @@
 	</div>
 	<!--end of navbar area-->
 	<center>
-		<h2 class="mt-3 mb-2">Riwayat Janji Temu dengan Dokter</h2>
-	<div style="width:90%;" class="px-2 mt-5">
+		<h2 class="mt-5">Riwayat Janji Temu dengan Dokter</h2>
+	<div style="width:90%;" class="px-2 mt-4">
 	
 	
 	<h5 style="text-align:left">Akan Datang</h5>
@@ -102,7 +102,7 @@
 					$sql	= "SELECT a.no_pendaftaran, a.tgl, b.hari, b.waktu_mulai, b.waktu_selesai, 
 								c.dokter, d.klinik FROM riwayat_pasien AS a INNER JOIN jadwal_dokter AS b
 								ON a.id_jadwal=b.id_jadwal INNER JOIN dokter AS c ON b.id_dokter=c.id_dokter
-								INNER JOIN klinik AS d ON b.id_klinik=d.id_klinik WHERE a.no_rm='$no_rm' AND a.tgl>'$today'";
+								INNER JOIN klinik AS d ON b.id_klinik=d.id_klinik WHERE a.no_rm='$no_rm' AND a.tgl>='$today'";
 
 					$query = mysqli_query($connect, $sql);
 					while($data=mysqli_fetch_array($query)){
@@ -115,8 +115,8 @@
 					<td> <?=$data['klinik'];?></td>
 					<td> 
 						<div class="btn-group">
-  							<a href="hapus_riwayat.php?id_jadwal=<?php echo $data['no_pendaftaran'];?>" class="btn btn-danger">Hapus</a>
-  							<a href="edit_jadwal.php?id_jadwal=<?php echo $data['no_pendaftaran'];?>" class="btn btn-warning">Edit</a>
+  							<a href="hapus_riwayat.php?no_pendaftaran=<?php echo $data['no_pendaftaran'];?>" class="btn btn-danger">Hapus</a>
+  							<a href="edit_jadwal.php?no_pendaftaran=<?php echo $data['no_pendaftaran'];?>" class="btn btn-warning">Edit</a>
 						</div>
 					</td>
 					</tr>

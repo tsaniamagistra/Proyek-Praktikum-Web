@@ -1,10 +1,10 @@
 <?php
     include 'koneksi.php';
     
-    $id_jadwal	    = $_POST['id_jadwal'];
-    $tgl			= $_POST['tanggal_periksa'];
-    $no_rm	       = $_POST['no_rm'];
-    
+    $id_jadwal  = $_POST['id_jadwal'];
+    $tgl		= $_POST['tanggal_periksa'];
+    $no_rm      = $_POST['no_rm'];
+
     $query = mysqli_query($connect, "SELECT * FROM riwayat_pasien WHERE id_jadwal='$id_jadwal' AND tgl='$tgl'");
     $cek = mysqli_num_rows($query); 
 
