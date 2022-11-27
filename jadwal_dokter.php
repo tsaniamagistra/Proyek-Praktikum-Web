@@ -80,7 +80,7 @@
 		<div style="color:white; text-align:left;" class="mb-3 mx-3">Pilih satu atau lebih filter atau langsung klik LIHAT untuk seluruhnya</div>
 		<form method="GET" action="jadwal_dokter.php" style="width: 100%;" class="row">
 			<div class="col-4">
-			<select class="form-select dropdown-toggle scrollable-select" name="klinik">
+			<select class="form-select" name="klinik">
 				<option value='0' selected>- Pilih Klinik</option>
 				<?php
 					$opt_klinik=mysqli_query($connect,"SELECT * FROM klinik");
@@ -92,7 +92,7 @@
 			</select>
 			</div>
 			<div class="col-4">
-			<select class="form-select col" name="dokter">
+			<select class="form-select" name="dokter">
 				<option value='0' selected>- Pilih Dokter</option>
 				<?php
 					$opt_dokter=mysqli_query($connect,"SELECT * FROM dokter");
@@ -104,7 +104,7 @@
 			</select>
 			</div>
 			<div class="col-3">
-			<select class="form-select col" name="hari">
+			<select class="form-select" name="hari">
 				<option value='0' selected>- Pilih Hari</option>
 				<?php for ($i=0; $i < $length; $i++) { ?>
 					<option value="<?=$days[$i];?>"><?=$days[$i];?></td>
