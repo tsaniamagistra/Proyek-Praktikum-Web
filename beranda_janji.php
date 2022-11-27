@@ -64,6 +64,7 @@
 				<a href="beranda_janji.php" class="list-group-item list-group-item-action" style="font-weight:bold;">Buat Janji Dokter</a>
 				<a href="riwayat.php" class="list-group-item list-group-item-action">Riwayat</a>
 				<?php if(!empty($_SESSION['no_rm'])){?>
+					<a href="edit_biodata.php" class="list-group-item list-group-item-action">Edit Biodata</a>
 					<a href="logout.php" class="list-group-item list-group-item-action"><?="Keluar";
 					?></a>
 				<?php }?>
