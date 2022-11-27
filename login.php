@@ -64,6 +64,7 @@
 				<a href="beranda_janji.php" class="list-group-item list-group-item-action">Buat Janji Dokter</a>
 				<a href="riwayat.php" class="list-group-item list-group-item-action">Riwayat</a>
 				<?php if(!empty($_SESSION['no_rm'])){?>
+					<a href="edit_biodata.php" class="list-group-item list-group-item-action">Edit Biodata</a>
 					<a href="logout.php" class="list-group-item list-group-item-action"><?="Keluar";
 					?></a>
 				<?php }?>
@@ -90,11 +91,16 @@
 					echo "Silakan masuk terlebih dahulu!";?>
 					<input type="hidden" name="next_page" value="riwayat.php"></input>
 				<?php }
-				else{
-					$nik=($_GET['message']);
-					$query1=mysqli_query($connect,"SELECT * FROM pasien WHERE nik=$nik");
-					$data1=mysqli_fetch_array($query1);
-					echo "Pendaftaran berhasil!<br>No. RM anda = ".$data1['no_rm'];?>
+				elseif($_GET['message']=="edit_biodata_berhasil"){
+					echo "Biodata berhasil diubah!<br>Silakan masuk kembali.";?>
+					<input type="hidden" name="next_page" value="home.php"></input>
+				<?php }
+				elseif($_GET['message']=="edit_biodata.php"){
+					echo "Silakan masuk terlebih dahulu!";?>
+					<input type="hidden" name="next_page" value="edit_biodata.php"></input>
+				<?php }
+				elseif($_GET['message']=="inputberhasil"){
+					echo "Pendaftaran berhasil! Silakan masuk.";?>
 					<input type="hidden" name="next_page" value="form_janji.php"></input>
 				<?php }
 				?> </div>
