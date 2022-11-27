@@ -23,6 +23,8 @@
 		if(isset($_GET['message'])){
         	if ($_GET['message']=="form_janji.php")
 				header("Location:terdaftar.php?message=berhasil");
+			else
+				header("Location:terdaftar.php?message=home.php");
 		}
 		else header("Location:terdaftar.php?message=home.php");
 	}
