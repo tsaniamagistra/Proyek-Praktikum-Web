@@ -99,7 +99,7 @@
         <form action="edit_pasien_proses.php" method="POST">
         <div class="row">
             <div class="col-6 mr-2">
-                <input type="hidden" name="id_jadwal" value="<?= $no_rm;?>">
+                <input type="hidden" name="no_rm" value="<?= $no_rm;?>">
                 <input type="text" name="nik" minlength="16" maxlength="16" class="form-control mb-2" placeholder="NIK" value="<?= $data['nik'];?>">
                 <input type="text" name="nama" class="form-control mb-2" placeholder="Nama Lengkap" value="<?= $data['nama'];?>">
                 <input type="text" name="tempat_lahir" class="form-control mb-0" placeholder="Tempat Lahir" value="<?= $data['tempat_lahir'];?>">
