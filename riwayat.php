@@ -120,7 +120,7 @@
 							<td> <?=date('H:i', strtotime($data['waktu_mulai']))." - ".date('H:i', strtotime($data['waktu_selesai']));?></td>
 							<td> <?=$data['dokter'];?></td>
 							<td> <?=$data['klinik'];?></td>
-							<td><a href="hapus_riwayat.php?no_pendaftaran=<?php echo $data['no_pendaftaran'];?>" class="btn btn-danger">Hapus</a></td>
+							<td><a href="hapus_riwayat.php?no_pendaftaran=<?php echo $data['no_pendaftaran'];?>" class="btn btn-danger">Batalkan</a></td>
 							</tr>
 					<?php }			
 					}

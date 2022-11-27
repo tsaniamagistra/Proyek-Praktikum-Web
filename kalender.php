@@ -29,7 +29,7 @@
 	<!--end of navbar area-->
 	<div class="d-flex align-items-center justify-content-center" style="height:85vh;">
 		<center style="width:25%;">
-		<h5 class="mb-3">Silakan pilih tanggal</h5>
+		<h5 class="mb-3">Silakan pilih tanggal temu</h5>
 		<div style="background-color:#063970; color:white;" class="p-4">
 		<form method="POST" action="form_janji_proses.php" style="width: 100%;">
 			<input type="hidden" name="id_jadwal" value="<?=$id_jadwal?>">
