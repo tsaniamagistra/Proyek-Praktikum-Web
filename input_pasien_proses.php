@@ -20,7 +20,8 @@
 	$query	= mysqli_query($connect, $sql) or die(mysqli_error($connect));
 
 	if($query) {
-		header("Location:login.php?message=$nik");
+		header("Location:terdaftar.php?message=berhasil");
+		
 	} else {
 		echo "Input Data Gagal.";
 	}
