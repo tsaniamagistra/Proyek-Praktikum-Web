@@ -1,6 +1,8 @@
 <?php
 	session_start();
 	include 'koneksi.php';
+
+	$today		= date("Y-m-d");
 ?>
 <!DOCTYPE html>
 <html>
@@ -91,7 +93,7 @@
                 <input type="text" name="nama" class="form-control mb-2" placeholder="Nama Lengkap">
                 <input type="text" name="tempat_lahir" class="form-control mb-0" placeholder="Tempat Lahir">
                 <label class="form-label text-white mb-0">Tanggal Lahir</label>
-                <input class="form-control mb-2" type="date" name="tanggal_lahir">                        
+                <input class="form-control mb-2" type="date" name="tanggal_lahir" max="<?=$today?>">                        
                 <div class="row mb-2">
                 <div class="col-6 mr-1">
                     <select name="goldar" class="form-select form-select-sm">
