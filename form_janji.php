@@ -90,7 +90,7 @@
 						echo "Jadwal sudah penuh, silakan pilih jadwal lain.";
 				}
 				elseif($_GET['message']=="sudah_ada"){
-						echo "Anda telah terdaftar di jadwal ini!<br>Silakan cek riwayat untuk edit dan hapus jadwal atau pilih jadwal lain.";
+						echo "Anda telah terdaftar di jadwal ini!<br>Silakan cek riwayat untuk lihat jadwal atau pilih jadwal lain.";
 				}
 				}
 		?>
