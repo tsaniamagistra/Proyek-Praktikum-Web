@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2022 at 11:13 AM
+-- Generation Time: Nov 27, 2022 at 05:29 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -89,7 +89,8 @@ INSERT INTO `jadwal_dokter` (`id_jadwal`, `id_dokter`, `id_klinik`, `hari`, `wak
 (2020, 331, 103, 'Minggu', '09:00:00', '10:00:00'),
 (2021, 311, 101, 'Rabu', '09:00:00', '11:30:00'),
 (2022, 311, 101, 'Rabu', '13:00:00', '15:00:00'),
-(2023, 361, 107, 'Rabu', '13:00:00', '15:00:00');
+(2023, 361, 107, 'Rabu', '13:00:00', '15:00:00'),
+(2024, 361, 107, 'Minggu', '11:10:00', '10:50:00');
 
 -- --------------------------------------------------------
 
@@ -143,7 +144,15 @@ CREATE TABLE `pasien` (
 
 INSERT INTO `pasien` (`no_rm`, `nik`, `nama`, `jenis_kelamin`, `tempat_lahir`, `tanggal_lahir`, `goldar`, `agama`, `wn`, `status_kawin`, `no_wa`, `email`, `alamat`) VALUES
 (1, '1111111111111001', 'Elizabeth Darcy', 'P', 'West California', '2014-06-23', 'O', 'Islam', 'Indonesia', 'Belum Kawin', '0899991232111', 'fanyu@gmail.com', 'Tokyo, Jepang'),
-(2, '1111111111111002', 'Heiji Hattori', 'L', 'Osaka', '1994-04-16', 'B', 'Lainnya', 'Jepang', 'Belum Kawin', '0894196213004', 'hattoriheiji@gmail.com', 'Osaka, Jepang');
+(2, '1111111111111002', 'Heiji Hattori', 'L', 'Osaka', '1994-04-16', 'B', 'Lainnya', 'Jepang', 'Belum Kawin', '0894196213004', 'hattoriheiji@gmail.com', 'Osaka, Jepang'),
+(3, '6666777788889999', 'Percival Dumbledore', 'L', 'Ireland', '2008-01-01', 'O', 'Lainnya', '', 'Sudah Kawin', '09888888', '123@gmail.com', 'Irlandia rt 3/rw2'),
+(4, '6666777788889999', 'Percival Dumbledore', 'L', 'Ireland', '2008-01-01', 'O', 'Lainnya', '', 'Sudah Kawin', '09888888', '123@gmail.com', 'Irlandia rt 3/rw2'),
+(5, '6666777788889999', 'Percival Dumbledore', 'L', 'Ireland', '2008-01-01', 'O', 'Lainnya', '', 'Sudah Kawin', '09888888', '123@gmail.com', 'Irlandia rt 3/rw2'),
+(6, '6666777788889999', 'Percival Dumbledore', 'P', 'Ireland', '2022-11-01', 'B', 'Lainnya', '', 'Belum Kawin', '09888888', '123@gmail.com', 'wcfsdc'),
+(7, '9999888877776666', 'Percival Dumbledore', 'L', 'Ireland', '2022-11-04', 'A', 'Protestan', '', 'Belum Kawin', '09888888', '123@gmail.com', 'dfb'),
+(8, '6666777788889999', 'Percival Dumbledore', 'P', 'Ireland', '2022-11-09', 'B', 'Protestan', '', 'Belum Kawin', '09888888', '123@gmail.com', 'zxcsdv'),
+(9, '9999888877776666', 'Percival Dumbledore', 'L', 'Ireland', '2022-10-30', 'B', 'Protestan', '', 'Belum Kawin', '09888888', '123@gmail.com', 'kjbj'),
+(10, '9999888877776666', 'Percival Dumbledore', 'L', 'Ireland', '2022-11-12', 'A', 'Katolik', '', 'Belum Kawin', '09888888', '123@gmail.com', 'kwdbncs');
 
 -- --------------------------------------------------------
 
@@ -210,7 +219,13 @@ ALTER TABLE `jadwal_dokter`
 -- AUTO_INCREMENT for table `pasien`
 --
 ALTER TABLE `pasien`
-  MODIFY `no_rm` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `no_rm` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `riwayat_pasien`
+--
+ALTER TABLE `riwayat_pasien`
+  MODIFY `no_pendaftaran` int(17) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
