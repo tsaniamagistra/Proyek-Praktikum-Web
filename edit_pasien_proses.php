@@ -18,7 +18,9 @@
     $query	= mysqli_query($connect, "UPDATE `pasien` SET nik='$nik', nama='$nama', jenis_kelamin='$jenis_kelamin', tempat_lahir='$tempat_lahir', tanggal_lahir='$tanggal_lahir', goldar='$goldar', agama='$agama', wn='$wn', status_kawin='$status_kawin', no_wa='$no_wa', email='$email', alamat='$alamat' WHERE no_rm='$no_rm'") or die(mysqli_error($connect));
 	
 	if($query)
-	{
+	{	
+		session_start();
+		session_destroy();
 		header("Location:login.php?message=edit_biodata_berhasil");
 	}
 	else{

@@ -107,11 +107,11 @@
                 <input class="form-control mb-2" type="date" name="tanggal_lahir" max="<?=$today?>" value="<?= $data['tanggal_lahir'];?>">                        
                 <div class="row mb-2">
                 <div class="col-6 mr-1">
-                    <select name="goldar" class="form-select form-select-sm" value="<?= $data['goldar'];?>">
-                        <option value="A">A</option>
-                        <option value="B">B</option>
-                        <option value="O">O</option>
-                        <option value="AB">AB</option>
+                    <select name="goldar" class="form-select form-select-sm">
+                        <option value="A" <?php if($data['goldar']=="A"){ ?>selected<?php } ?>>A</option>
+                        <option value="B" <?php if($data['goldar']=="B"){ ?>selected<?php } ?>>B</option>
+                        <option value="O" <?php if($data['goldar']=="O"){ ?>selected<?php } ?>>O</option>
+                        <option value="AB" <?php if($data['goldar']=="AB"){ ?>selected<?php } ?>>AB</option>
                     </select>
                 </div>
                 <div class="col-6">
@@ -130,14 +130,14 @@
                 <input type="text" name="wn" class="form-control mb-2" placeholder="Kewarganegaraan" value="<?=$data['wn'];?>">
             </div>
             <div class="col-6 ml-2">
-                <select name="agama" class="form-select form-select mb-2" value="<?=$data['agama'];?>">
-                    <option value="Islam">Islam</option>
-                    <option value="Protestan">Protestan</option>
-                    <option value="Katolik">Katolik</option>
-                    <option value="Hindu">Hindu</option>
-                    <option value="Buddha">Buddha</option>
-                    <option value="Konghucu">Konghucu</option>
-                    <option value="Lainnya">Lainnya</option>
+                <select name="agama" class="form-select form-select mb-2">
+                    <option value="Islam" <?php if($data['agama']=="Islam"){ ?>selected<?php } ?>>Islam</option>
+                    <option value="Protestan" <?php if($data['agama']=="Protestan"){ ?>selected<?php } ?>>Protestan</option>
+                    <option value="Katolik" <?php if($data['agama']=="Katolik"){ ?>selected<?php } ?>>Katolik</option>
+                    <option value="Hindu" <?php if($data['agama']=="Hindu"){ ?>selected<?php } ?>>Hindu</option>
+                    <option value="Buddha" <?php if($data['agama']=="Buddha"){ ?>selected<?php } ?>>Buddha</option>
+                    <option value="Konghucu" <?php if($data['agama']=="Konghucu"){ ?>selected<?php } ?>>Konghucu</option>
+                    <option value="Lainnya" <?php if($data['agama']=="Lainnya"){ ?>selected<?php } ?>>Lainnya</option>
                 </select>
                 <div>
                     <label class="form-label text-white mb-0">Status Perkawinan</label>
