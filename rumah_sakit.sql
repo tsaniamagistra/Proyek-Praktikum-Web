@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2022 at 10:03 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.10
+-- Generation Time: Nov 27, 2022 at 03:07 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -143,16 +143,8 @@ CREATE TABLE `pasien` (
 --
 
 INSERT INTO `pasien` (`no_rm`, `nik`, `nama`, `jenis_kelamin`, `tempat_lahir`, `tanggal_lahir`, `goldar`, `agama`, `wn`, `status_kawin`, `no_wa`, `email`, `alamat`) VALUES
-(1, '1111111111111001', 'Elizabeth Darcy', 'P', 'West California', '2014-06-23', 'O', 'Islam', 'Indonesia', 'Belum Kawin', '0899991232111', 'fanyu@gmail.com', 'Tokyo, Jepang'),
-(2, '1111111111111002', 'Heiji Hattori', 'L', 'Osaka', '1994-04-16', 'B', 'Lainnya', 'Jepang', 'Belum Kawin', '0894196213004', 'hattoriheiji@gmail.com', 'Osaka, Jepang'),
-(3, '6666777788889999', 'Percival Dumbledore', 'L', 'Ireland', '2008-01-01', 'O', 'Lainnya', '', 'Sudah Kawin', '09888888', '123@gmail.com', 'Irlandia rt 3/rw2'),
-(4, '6666777788889999', 'Percival Dumbledore', 'L', 'Ireland', '2008-01-01', 'O', 'Lainnya', '', 'Sudah Kawin', '09888888', '123@gmail.com', 'Irlandia rt 3/rw2'),
-(5, '6666777788889999', 'Percival Dumbledore', 'L', 'Ireland', '2008-01-01', 'O', 'Lainnya', '', 'Sudah Kawin', '09888888', '123@gmail.com', 'Irlandia rt 3/rw2'),
-(6, '6666777788889999', 'Percival Dumbledore', 'P', 'Ireland', '2022-11-01', 'B', 'Lainnya', '', 'Belum Kawin', '09888888', '123@gmail.com', 'wcfsdc'),
-(7, '9999888877776666', 'Percival Dumbledore', 'L', 'Ireland', '2022-11-04', 'A', 'Protestan', '', 'Belum Kawin', '09888888', '123@gmail.com', 'dfb'),
-(8, '6666777788889999', 'Percival Dumbledore', 'P', 'Ireland', '2022-11-09', 'B', 'Protestan', '', 'Belum Kawin', '09888888', '123@gmail.com', 'zxcsdv'),
-(9, '9999888877776666', 'Percival Dumbledore', 'L', 'Ireland', '2022-10-30', 'B', 'Protestan', '', 'Belum Kawin', '09888888', '123@gmail.com', 'kjbj'),
-(10, '9999888877776666', 'Percival Dumbledore', 'L', 'Ireland', '2022-11-12', 'A', 'Katolik', '', 'Belum Kawin', '09888888', '123@gmail.com', 'kwdbncs');
+(1, '1111111111111001', 'Elizabeth Darcy', 'P', 'West Virginia', '2014-06-24', 'O', 'Katolik', 'Indonesia', 'Sudah Kawin', '0899991232111', 'fanyu@gmail.com', 'Kyoto'),
+(2, '1111111111111002', 'Heiji Hattori', 'L', 'Osaka', '1994-04-16', 'B', 'Lainnya', 'Jepang', 'Belum Kawin', '0894196213004', 'hattoriheiji@gmail.com', 'Osaka, Jepang');
 
 -- --------------------------------------------------------
 
@@ -173,9 +165,10 @@ CREATE TABLE `riwayat_pasien` (
 
 INSERT INTO `riwayat_pasien` (`no_pendaftaran`, `no_rm`, `id_jadwal`, `tgl`) VALUES
 (1, 2, 2020, '2022-11-27'),
-(2, 2, 2024, '2022-11-27'),
-(3, 2, 2021, '2022-11-23'),
-(4, 2, 2022, '2022-11-30');
+(4, 2, 2022, '2022-11-30'),
+(6, 1, 2002, '2022-12-01'),
+(7, 1, 2015, '2022-10-21'),
+(8, 1, 2015, '2022-10-14');
 
 --
 -- Indexes for dumped tables
@@ -235,7 +228,7 @@ ALTER TABLE `pasien`
 -- AUTO_INCREMENT for table `riwayat_pasien`
 --
 ALTER TABLE `riwayat_pasien`
-  MODIFY `no_pendaftaran` int(17) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `no_pendaftaran` int(17) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
