@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2022 at 05:29 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Nov 27, 2022 at 10:03 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -90,7 +90,7 @@ INSERT INTO `jadwal_dokter` (`id_jadwal`, `id_dokter`, `id_klinik`, `hari`, `wak
 (2021, 311, 101, 'Rabu', '09:00:00', '11:30:00'),
 (2022, 311, 101, 'Rabu', '13:00:00', '15:00:00'),
 (2023, 361, 107, 'Rabu', '13:00:00', '15:00:00'),
-(2024, 361, 107, 'Minggu', '11:10:00', '10:50:00');
+(2024, 341, 104, 'Minggu', '21:00:00', '23:00:00');
 
 -- --------------------------------------------------------
 
@@ -168,6 +168,16 @@ CREATE TABLE `riwayat_pasien` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `riwayat_pasien`
+--
+
+INSERT INTO `riwayat_pasien` (`no_pendaftaran`, `no_rm`, `id_jadwal`, `tgl`) VALUES
+(1, 2, 2020, '2022-11-27'),
+(2, 2, 2024, '2022-11-27'),
+(3, 2, 2021, '2022-11-23'),
+(4, 2, 2022, '2022-11-30');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -225,7 +235,7 @@ ALTER TABLE `pasien`
 -- AUTO_INCREMENT for table `riwayat_pasien`
 --
 ALTER TABLE `riwayat_pasien`
-  MODIFY `no_pendaftaran` int(17) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `no_pendaftaran` int(17) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

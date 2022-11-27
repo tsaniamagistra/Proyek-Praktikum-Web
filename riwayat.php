@@ -1,4 +1,5 @@
 <?php 
+	date_default_timezone_set("Asia/Jakarta");
 	session_start();
 	
 	if (empty($_SESSION['no_rm'])) {
@@ -99,7 +100,7 @@
 					<?php
 					 
 					$today= date("Y-m-d");
-					$now= date("h:i:s");
+					$now= date("H:i:s");
 
 					$sql= "SELECT a.no_pendaftaran, a.tgl, b.hari, b.waktu_mulai, b.waktu_selesai, 
 							c.dokter, d.klinik FROM riwayat_pasien AS a INNER JOIN jadwal_dokter AS b
@@ -108,8 +109,9 @@
 
 					$query = mysqli_query($connect, $sql);
 					while($data=mysqli_fetch_array($query)){
-						$waktu_mulai=$data['waktu_mulai'];
-						if($tgl=$today && $waktu_mulai<$now){
+						$waktu_selesai=$data['waktu_selesai'];
+						$tgl=$data['tgl'];
+						if($tgl==$today && $waktu_selesai>$now){
 					?>
 							<tr>
 							<td> <?=$data['no_pendaftaran'];?></td>
@@ -167,8 +169,9 @@
 
 					$query = mysqli_query($connect, $sql);
 					while($data=mysqli_fetch_array($query)){
-						$waktu_mulai=$data['waktu_mulai'];
-						if($tgl=$today && $waktu_mulai<$now){
+						$waktu_selesai=$data['waktu_selesai'];
+						$tgl=$data['tgl'];
+						if($tgl==$today && $waktu_selesai<$now){
 					?>
 						<tr>
 						<td> <?=$data['no_pendaftaran'];?></td>

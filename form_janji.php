@@ -80,7 +80,7 @@
 	</div>
 	<!--end of navbar area-->
     <center class="my-5 pt-5">
-    <div style="text-align:center;" class="mb-3"><h4>Silakan cari jadwal dan tekan jam</h4></div>
+    <div style="text-align:center;" class="mb-3"><h4>Silakan cari jadwal dan klik jam yang diinginkan</h4></div>
 	<div style="width:90%; background-color:#063970;" class="py-4 px-2">
 		<div style="color:white; text-align:left;" class="mb-3 mx-3">Pilih satu atau lebih filter atau langsung klik CARI untuk seluruhnya</div>
 		<form method="GET" action="form_janji.php" style="width: 100%;" class="row">
