@@ -18,10 +18,6 @@
 	<title>Pendaftaran Pasien Baru</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 	<style>
-        .form-container{
-        background-color: #063970;
-        padding: 4%;
-        }
 		.list-group-item{
 			border-bottom: 0;
 		}
@@ -130,8 +126,6 @@
 		$id_dokter	= $_GET['dokter'];
 		$hari		= $_GET['hari'];
 	?>
-	<form method="POST" action="form_janji_proses.php"> <!--Form-->
-	<input type="hidden" name="no_rm" value="<?=$no_rm?>"> <!--Form-->
 	<div style="width:90%;" class="px-2 mt-4">
 		<?php
 			if($_GET['klinik']=='0')
@@ -184,8 +178,11 @@
 									$query4=mysqli_query($connect, "SELECT * FROM jadwal_dokter WHERE id_dokter=$data2[id_dokter] AND hari='$days[$i]' AND id_klinik=$data1[id_klinik]");
 									while($data4=mysqli_fetch_array($query4)){
 									if($data4!=NULL){ ?>
-										<input type="hidden" name="id_jadwal" value="<?=$data4['id_jadwal']?>"> <!--Form-->
-										<button type="submit" class="btn p-0"><?=date('H:i', strtotime($data4['waktu_mulai'])) . "-" . date('H:i', strtotime($data4['waktu_selesai'])) . "\n";?></button> <!--Form-->
+										<form method="POST" action="form_janji_proses.php">
+										<input type="hidden" name="no_rm" value="<?=$no_rm?>">
+										<input type="hidden" name="id_jadwal" value="<?=$data4['id_jadwal']?>">
+										<button type="submit" class="btn p-0"><?=date('H:i', strtotime($data4['waktu_mulai'])) . "-" . date('H:i', strtotime($data4['waktu_selesai'])) . "\n";?></button>
+										</form>
 									<?php }
 									else
 										echo "-";
@@ -200,7 +197,6 @@
 				<?php }
 			} ?>
 	</div>
-	</form> <!--Form-->
 	<?php } ?>
 	</center>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
