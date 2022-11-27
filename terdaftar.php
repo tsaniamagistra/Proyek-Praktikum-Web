@@ -2,6 +2,7 @@
     include('koneksi.php');
 	if(isset($_GET['message'])){
 ?>
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,16 +11,10 @@
 	<title>Pendaftaran Pasien Baru</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 	<style>
-        .form-container{
+		.form-container{
         background-color: #063970;
         padding: 2.5%;
         }
-		.list-group-item{
-			border-bottom: 0;
-		}
-		.btn-merkcolor{
-			background-color:#063970;
-		}
 	</style>
 </head>
 <body>
@@ -27,28 +22,9 @@
 	<nav class="navbar navbar-dark" style="background-color:#063970">
   	<div class="container-fluid">
   	  <a class="navbar-brand"><img src="Images/logo.png" style="height:30px" alt="HOSPITAL"></a>
-  	  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-  	  	<span class="navbar-toggler-icon"></span>
-  	  </button>
   	</div>
 	</nav>
-	<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-		<div class="offcanvas-header">
-			<h5 class="offcanvas-title" id="offcanvasRightLabel">Contoh Nama, Nn.</h5>
-			<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-		</div>
-		<div class="offcanvas-body">
-			<div class="list-group list-group-flush">
-				<a href="home.php" class="list-group-item list-group-item-action">Beranda</a>
-				<a href="#" class="list-group-item list-group-item-action">Jadwal Dokter</a>
-				<a href="beranda_janji.php" class="list-group-item list-group-item-action" style="font-weight:bold;">Buat Janji Dokter</a>
-				<a href="#" class="list-group-item list-group-item-action">Riwayat</a>
-				<a href="#" class="list-group-item list-group-item-action">Logout</a>
-			</div>
-		</div>
-	</div>
 	<!--end of navbar area-->
-    
     <div class="row" style="width:100vw">
     <div class="col-4">
     </div>
@@ -79,7 +55,7 @@
         </div>
         <center>
             <div class="mt-4">
-            <a href="login.php" type="button" class="btn btn-dark btn-merkcolor">Untuk membuat janji temu dokter<br>Silakan masuk di sini</a>
+            <a href="login.php?message=inputberhasil" type="button" class="btn btn-dark btn-merkcolor">Untuk membuat janji temu dokter<br>Silakan masuk di sini</a>
             </div>
         </center>
     </div>
