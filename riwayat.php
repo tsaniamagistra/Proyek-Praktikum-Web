@@ -112,11 +112,11 @@
 					while($data=mysqli_fetch_array($query)){
 						$waktu_selesai=$data['waktu_selesai'];
 						$tgl=$data['tgl'];
-						if($tgl==$today && $waktu_selesai>$now){
+						if(($tgl==$today && $waktu_selesai>$now)||($tgl>$today)){
 					?>
 							<tr>
 							<td> <?=$data['no_pendaftaran'];?></td>
-							<td> <?=$data['hari'].", ".$data['tgl'];?></td>
+							<td> <?=$data['hari'].", ".date('d F Y',strtotime($data['tgl']));?></td>
 							<td> <?=date('H:i', strtotime($data['waktu_mulai']))." - ".date('H:i', strtotime($data['waktu_selesai']));?></td>
 							<td> <?=$data['dokter'];?></td>
 							<td> <?=$data['klinik'];?></td>
@@ -127,25 +127,9 @@
 							</div>
 							</td>
 							</tr>
-					<?php }
-						elseif($tgl>$today){
+					<?php }			
+					}
 					?>
-							<tr>
-							<td> <?=$data['no_pendaftaran'];?></td>
-							<td> <?=$data['hari'].", ".$data['tgl'];?></td>
-							<td> <?=date('H:i', strtotime($data['waktu_mulai']))." - ".date('H:i', strtotime($data['waktu_selesai']));?></td>
-							<td> <?=$data['dokter'];?></td>
-							<td> <?=$data['klinik'];?></td>
-							<td> 
-							<div class="btn-group">
-  								<a href="hapus_riwayat.php?no_pendaftaran=<?php echo $data['no_pendaftaran'];?>" class="btn btn-danger">Hapus</a>
-  								<a href="edit_jadwal.php?no_pendaftaran=<?php echo $data['no_pendaftaran'];?>" class="btn btn-warning">Edit</a>
-							</div>
-							</td>
-							</tr>
-					<?php				
-						}
-					} ?>
 				</tbody>
 		</table>
 
@@ -172,28 +156,17 @@
 					while($data=mysqli_fetch_array($query)){
 						$waktu_selesai=$data['waktu_selesai'];
 						$tgl=$data['tgl'];
-						if($tgl==$today && $waktu_selesai<$now){
+						if(($tgl==$today && $waktu_selesai<$now)||($tgl<$today)){
 					?>
 						<tr>
 						<td> <?=$data['no_pendaftaran'];?></td>
-						<td> <?=$data['hari'].", ".$data['tgl'];?></td>
+						<td> <?=$data['hari'].", ".date('d F Y',strtotime($data['tgl']));?></td>
 						<td> <?=date('H:i', strtotime($data['waktu_mulai']))." - ".date('H:i', strtotime($data['waktu_selesai']));?></td>
 						<td> <?=$data['dokter'];?></td>
 						<td> <?=$data['klinik'];?></td>
 						</tr>
 					<?php }
-						elseif($tgl<$today){
-					?>
-						<tr>
-						<td> <?=$data['no_pendaftaran'];?></td>
-						<td> <?=$data['hari'].", ".$data['tgl'];?></td>
-						<td> <?=date('H:i', strtotime($data['waktu_mulai']))." - ".date('H:i', strtotime($data['waktu_selesai']));?></td>
-						<td> <?=$data['dokter'];?></td>
-						<td> <?=$data['klinik'];?></td>
-						</tr>
-					<?php
-						}
-					} ?>
+					}?>
 				</tbody>
 		</table>
 	</center>
