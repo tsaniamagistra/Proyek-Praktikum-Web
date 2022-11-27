@@ -75,7 +75,7 @@
 	<center>
 		<h2 style="margin-top:15%;">Buat Janji Temu dengan Dokter</h2>
 		<div class="row mt-5" style="width:70%;">
-			<div class="d-grid col-6"><a href="input_pasien.php" type="button" class="btn btn-dark btn-lg btn-merkcolor">Pasien Baru<br>(Belum ada nomor Rekam Medis)</a></div>
+			<div class="d-grid col-6"><a href="input_pasien.php?message=form_janji.php" type="button" class="btn btn-dark btn-lg btn-merkcolor">Pasien Baru<br>(Belum ada nomor Rekam Medis)</a></div>
 			<div class="d-grid col-6">
 				<a href="form_janji.php" type="button" class="btn btn-dark btn-lg btn-merkcolor">Pasien Lama<br>(Sudah ada nomor Rekam Medis)</a></div>
 		</div>

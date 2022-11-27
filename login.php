@@ -79,7 +79,7 @@
 			if(isset($_GET['message'])){?>
 				<div style="color:white; text-align:center;" class="mb-2">
 				<?php
-				if (strpos($_GET['message'],"failed") !== false) {
+				if ($_GET['message']=="failed") {
 					echo "Gagal masuk!<br>No. RM atau Tanggal Lahir salah.";?>
 					<input type="hidden" name="next_page" value="home.php"></input>
 				<?php }

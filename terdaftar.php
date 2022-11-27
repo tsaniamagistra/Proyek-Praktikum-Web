@@ -15,6 +15,9 @@
         background-color: #063970;
         padding: 2.5%;
         }
+        .btn-merkcolor{
+            background-color:#063970;
+        }
 	</style>
 </head>
 <body>
@@ -55,7 +58,12 @@
         </div>
         <center>
             <div class="mt-4">
+            <?php if ($_GET['message']=="berhasil") {?>
             <a href="login.php?message=inputberhasil" type="button" class="btn btn-dark btn-merkcolor">Untuk membuat janji temu dokter<br>Silakan masuk di sini</a>
+            <?php }
+            elseif ($_GET['message']=="home.php") {?>
+            <a href="login.php" type="button" class="btn btn-dark btn-merkcolor">Silakan masuk di sini</a>
+            <?php } ?>
             </div>
         </center>
     </div>

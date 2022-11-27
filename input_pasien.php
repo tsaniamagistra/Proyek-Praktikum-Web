@@ -88,6 +88,14 @@
     <div class="col-6">
         <div class="container-md form-container">
         <form action="input_pasien_proses.php" method="POST">
+        <?php if(isset($_GET['message'])){
+        	if ($_GET['message']=="form_janji.php") {?>
+				<input type="hidden" name="next_page" value="form_janji.php"></input>
+			<?php }}
+			else {?>
+				<input type="hidden" name="next_page" value="home.php"></input>
+			<?php }
+        ?>
         <div class="row">
             <div class="col-6 mr-2">
                 <input type="text" name="nik" minlength="16" maxlength="16" class="form-control mb-2" placeholder="NIK">
