@@ -8,7 +8,7 @@
     $tanggal_lahir	= $_POST['tanggal_lahir'];
 	$goldar	        = $_POST['goldar'];
 	$agama	        = $_POST['agama'];
-	$no_wa	        = $_POST['wn'];
+	$wn	        	= $_POST['wn'];
     $status_kawin	= $_POST['status_kawin'];
 	$no_wa	        = $_POST['no_wa'];
 	$email	        = $_POST['email'];
