@@ -88,39 +88,61 @@
 			<thead class="table-light">
 				<tr>
 					<td class="col-1">No. Pendaftaran</td>
-					<td class="col-1">Tanggal</td>
-					<td class="col-2">Waktu</td>
+					<td class="col-2">Hari, Tanggal</td>
+					<td class="col-1">Waktu</td>
 					<td class="col-3">Dokter</td>
-					<td class="col-1">Klinik</td>
-					<td class="col-2">Aksi</td>
+					<td class="col-2">Klinik</td>
+					<td class="col-1">Aksi</td>
 				</tr>
 			</thead>
 				<tbody>
 					<?php
 					 
 					$today= date("Y-m-d");
-					$sql	= "SELECT a.no_pendaftaran, a.tgl, b.hari, b.waktu_mulai, b.waktu_selesai, 
-								c.dokter, d.klinik FROM riwayat_pasien AS a INNER JOIN jadwal_dokter AS b
-								ON a.id_jadwal=b.id_jadwal INNER JOIN dokter AS c ON b.id_dokter=c.id_dokter
-								INNER JOIN klinik AS d ON b.id_klinik=d.id_klinik WHERE a.no_rm='$no_rm' AND a.tgl>='$today'";
+					$now= date("h:i:s");
+
+					$sql= "SELECT a.no_pendaftaran, a.tgl, b.hari, b.waktu_mulai, b.waktu_selesai, 
+							c.dokter, d.klinik FROM riwayat_pasien AS a INNER JOIN jadwal_dokter AS b
+							ON a.id_jadwal=b.id_jadwal INNER JOIN dokter AS c ON b.id_dokter=c.id_dokter
+							INNER JOIN klinik AS d ON b.id_klinik=d.id_klinik WHERE a.no_rm='$no_rm' AND a.tgl>='$today'";
 
 					$query = mysqli_query($connect, $sql);
 					while($data=mysqli_fetch_array($query)){
+						$waktu_mulai=$data['waktu_mulai'];
+						if($tgl=$today && $waktu_mulai<$now){
 					?>
-					<tr>
-					<td> <?=$data['no_pendaftaran'];?></td>
-					<td> <?=$data['tgl'];?></td>
-					<td> <?=$data['hari'].", ".date('H:i', strtotime($data['waktu_mulai']))." - ".date('H:i', strtotime($data['waktu_selesai']));?></td>
-					<td> <?=$data['dokter'];?></td>
-					<td> <?=$data['klinik'];?></td>
-					<td> 
-						<div class="btn-group">
-  							<a href="hapus_riwayat.php?no_pendaftaran=<?php echo $data['no_pendaftaran'];?>" class="btn btn-danger">Hapus</a>
-  							<a href="edit_jadwal.php?no_pendaftaran=<?php echo $data['no_pendaftaran'];?>" class="btn btn-warning">Edit</a>
-						</div>
-					</td>
-					</tr>
-					<?php } ?>
+							<tr>
+							<td> <?=$data['no_pendaftaran'];?></td>
+							<td> <?=$data['hari'].", ".$data['tgl'];?></td>
+							<td> <?=date('H:i', strtotime($data['waktu_mulai']))." - ".date('H:i', strtotime($data['waktu_selesai']));?></td>
+							<td> <?=$data['dokter'];?></td>
+							<td> <?=$data['klinik'];?></td>
+							<td> 
+							<div class="btn-group">
+  								<a href="hapus_riwayat.php?no_pendaftaran=<?php echo $data['no_pendaftaran'];?>" class="btn btn-danger">Hapus</a>
+  								<a href="edit_jadwal.php?no_pendaftaran=<?php echo $data['no_pendaftaran'];?>" class="btn btn-warning">Edit</a>
+							</div>
+							</td>
+							</tr>
+					<?php }
+						elseif($tgl>$today){
+					?>
+							<tr>
+							<td> <?=$data['no_pendaftaran'];?></td>
+							<td> <?=$data['hari'].", ".$data['tgl'];?></td>
+							<td> <?=date('H:i', strtotime($data['waktu_mulai']))." - ".date('H:i', strtotime($data['waktu_selesai']));?></td>
+							<td> <?=$data['dokter'];?></td>
+							<td> <?=$data['klinik'];?></td>
+							<td> 
+							<div class="btn-group">
+  								<a href="hapus_riwayat.php?no_pendaftaran=<?php echo $data['no_pendaftaran'];?>" class="btn btn-danger">Hapus</a>
+  								<a href="edit_jadwal.php?no_pendaftaran=<?php echo $data['no_pendaftaran'];?>" class="btn btn-warning">Edit</a>
+							</div>
+							</td>
+							</tr>
+					<?php				
+						}
+					} ?>
 				</tbody>
 		</table>
 
@@ -129,7 +151,7 @@
 			<thead class="table-light">
 				<tr>
 					<td class="col-1">No. Pendaftaran</td>
-					<td class="col-1">Tanggal</td>
+					<td class="col-2">Hari, Tanggal</td>
 					<td class="col-2">Waktu</td>
 					<td class="col-3">Dokter</td>
 					<td class="col-1">Klinik</td>
@@ -138,23 +160,36 @@
 				<tbody>
 					<?php
 					 
-					$today= date("Y-m-d");
 					$sql	= "SELECT a.no_pendaftaran, a.tgl, b.hari, b.waktu_mulai, b.waktu_selesai, 
 								c.dokter, d.klinik FROM riwayat_pasien AS a INNER JOIN jadwal_dokter AS b
 								ON a.id_jadwal=b.id_jadwal INNER JOIN dokter AS c ON b.id_dokter=c.id_dokter
-								INNER JOIN klinik AS d ON b.id_klinik=d.id_klinik WHERE a.no_rm='$no_rm' AND a.tgl<'$today'";
+								INNER JOIN klinik AS d ON b.id_klinik=d.id_klinik WHERE a.no_rm='$no_rm' AND a.tgl<='$today'";
 
 					$query = mysqli_query($connect, $sql);
 					while($data=mysqli_fetch_array($query)){
+						$waktu_mulai=$data['waktu_mulai'];
+						if($tgl=$today && $waktu_mulai<$now){
 					?>
-					<tr>
-					<td> <?=$data['no_pendaftaran'];?></td>
-					<td> <?=$data['tgl'];?></td>
-					<td> <?=$data['hari'].", ".date('H:i', strtotime($data['waktu_mulai']))." - ".date('H:i', strtotime($data['waktu_selesai']));?></td>
-					<td> <?=$data['dokter'];?></td>
-					<td> <?=$data['klinik'];?></td>
-					</tr>
-					<?php } ?>
+						<tr>
+						<td> <?=$data['no_pendaftaran'];?></td>
+						<td> <?=$data['hari'].", ".$data['tgl'];?></td>
+						<td> <?=date('H:i', strtotime($data['waktu_mulai']))." - ".date('H:i', strtotime($data['waktu_selesai']));?></td>
+						<td> <?=$data['dokter'];?></td>
+						<td> <?=$data['klinik'];?></td>
+						</tr>
+					<?php }
+						elseif($tgl<$today){
+					?>
+						<tr>
+						<td> <?=$data['no_pendaftaran'];?></td>
+						<td> <?=$data['hari'].", ".$data['tgl'];?></td>
+						<td> <?=date('H:i', strtotime($data['waktu_mulai']))." - ".date('H:i', strtotime($data['waktu_selesai']));?></td>
+						<td> <?=$data['dokter'];?></td>
+						<td> <?=$data['klinik'];?></td>
+						</tr>
+					<?php
+						}
+					} ?>
 				</tbody>
 		</table>
 	</center>
